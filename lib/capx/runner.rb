@@ -32,7 +32,7 @@ module Capx
           end 
         end
       else
-        puts "File #{file} doesnt exist"  
+        puts "File #{file} not found"
       end  
     end
   end

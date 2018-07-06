@@ -7,14 +7,15 @@ Gem::Specification.new do |spec|
   spec.name                  = 'capx'
   spec.version               = Capx::VERSION
   spec.platform              = Gem::Platform::RUBY
-  spec.required_ruby_version = '>= 1.9.3'
+  spec.required_ruby_version = '>= 2.2.0'
   spec.authors               = ['Jan Kmet']
   spec.email                 = ['jan.kmet@gmail.com']
-  spec.summary               = 'capistrano shell extension for ssh'
+  spec.summary               = 'SSH shortcut using capistrano deploy configuration'
   spec.description           =  <<-EOF
-    Uses capistrano file structur for accessing ssh.
+    SSH shortcut using capistrano deploy configuration.
+    SSH username and host are parsed from capistrano deploy configuration
   EOF
-  spec.homepage              = ''
+  spec.homepage              = 'https://github.com/jankmet/capx'
 
   spec.files                 = `git ls-files`.split($RS)
   spec.executables           = ['capx']

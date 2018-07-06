@@ -6,7 +6,8 @@ $LOAD_PATH.unshift(File.dirname(File.realpath(__FILE__)) + '/../lib')
 require 'capx'
 
 def show_help
-  puts 'params: <input_path>  <output_path>'
+  puts 'params: <stage>  <switch>'
+  puts 'example: capx staging ssh'
 end
 
 if ARGV[0]
