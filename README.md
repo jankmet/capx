@@ -1,6 +1,14 @@
 # CapX
 
-SSH shortcut using capistrano deploy configuration
+Generates SSH command using capistrano deploy configuration. \
+SSH username and host are parsed from capistrano deploy configuration. \
+\
+capistrano deploy configuration:
+
+    server 'dev.example.com', user: 'deploy', roles: %w{web app db}, primary: true
+generated SSH command:
+
+    $ ssh deploy@dev.example.com
 
 ## Installation
 
