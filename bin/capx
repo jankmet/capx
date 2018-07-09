@@ -6,15 +6,16 @@ $LOAD_PATH.unshift(File.dirname(File.realpath(__FILE__)) + '/../lib')
 require 'capx'
 
 def show_help
-  puts 'params: <stage>  <switch>'
+  puts 'params: <stage>  <switch> <user>'
   puts 'example: capx staging ssh'
 end
 
 if ARGV[0]
   stage = ARGV[0]
-  param = ARGV[1]
+  switch = ARGV[1]
+  user = ARGV[2]
 
-  runner = Capx::Runner.new(stage: stage, param: param)
+  runner = Capx::Runner.new(stage: stage, switch: switch, user: user)
   runner.run
 else
   show_help

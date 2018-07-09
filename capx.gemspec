@@ -10,9 +10,9 @@ Gem::Specification.new do |spec|
   spec.required_ruby_version = '>= 2.2.0'
   spec.authors               = ['Jan Kmet']
   spec.email                 = ['jan.kmet@gmail.com']
-  spec.summary               = 'SSH shortcut using capistrano deploy configuration'
+  spec.summary               = 'Generates SSH command using capistrano deploy configuration.'
   spec.description           =  <<-EOF
-    SSH shortcut using capistrano deploy configuration.
+    Generates SSH command using capistrano deploy configuration..
     SSH username and host are parsed from capistrano deploy configuration
   EOF
   spec.homepage              = 'https://github.com/jankmet/capx'

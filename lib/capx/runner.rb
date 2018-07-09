@@ -5,8 +5,8 @@ module Capx
     def initialize(options)
       @stage  = options[:stage]
       @switch = options[:switch]
+      @user   = options[:user]
       @server = nil
-      @user   = nil
     end
 
     def run
@@ -15,14 +15,14 @@ module Capx
         File.open(file).each do |line|
           if match = PATTERN.match(line)
             @server = match.captures[0]
-            @user = match.captures[1]
+            @user = match.captures[1] if @user.nil?
           end  
         end
 
         if @server.nil? || @user.nil?
           puts "capistrano server/user not found"
         else
-          if ARGV[1] == 'ssh'
+          if @switch == 'ssh'
             # call ssh  
             cmd = "ssh #{@user}@#{@server}"
             puts "executing #{cmd}"

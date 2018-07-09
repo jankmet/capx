@@ -23,10 +23,11 @@ generated SSH command:
 This will add the following executable in your shell:
 
 
-capx [stage] [ssh]
+capx [stage] [ssh] [user]
 
 
 ### Examples:
 
     $ capx staging  # show ssh command
     $ capx production ssh  # execute ssh command
+    $ capx production ssh root # execute ssh command with root user
