@@ -25,8 +25,14 @@ module Capx
           if @switch == 'ssh'
             # call ssh  
             cmd = "ssh #{@user}@#{@server}"
-            puts "executing #{cmd}"
-            exec(cmd)
+            execute_cmd(cmd)
+          elsif @switch == 'disk'
+            # call remote df -H
+            cmd = "ssh #{@user}@#{@server} 'df -H'" 
+            execute_cmd(cmd)
+          elsif @switch == 'info'
+            cmd = "ssh #{@user}@#{@server} 'cat /etc/*-release'"  
+            execute_cmd(cmd)
           else    
             puts "#{@user}@#{@server}"
           end 
@@ -34,6 +40,13 @@ module Capx
       else
         puts "File #{file} not found"
       end  
+    end
+
+    private
+
+    def execute_cmd(cmd)
+      puts "executing #{cmd}"
+      exec(cmd)
     end
   end
 end
