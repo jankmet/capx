@@ -1,6 +1,6 @@
 # CapX
 
-Generates SSH command using capistrano deploy configuration. \
+Generates SSH commands using capistrano deploy configuration. \
 SSH username and host are parsed from capistrano deploy configuration. \
 \
 capistrano deploy configuration:
@@ -23,7 +23,7 @@ generated SSH command:
 This will add the following executable in your shell:
 
 
-capx [stage] [ssh] [user]
+capx [stage] [ssh|disk|info] [user]
 
 
 ### Examples:
@@ -31,3 +31,4 @@ capx [stage] [ssh] [user]
     $ capx staging  # show ssh command
     $ capx production ssh  # execute ssh command
     $ capx production ssh root # execute ssh command with root user
+    $ capx production disk # execute ssh 'df -H' command
