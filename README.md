@@ -23,7 +23,7 @@ generated SSH command:
 This will add the following executable in your shell:
 
 
-capx [stage] [ssh|disk|info] [user]
+capx [stage] [ssh|disk|info|redis] [user]
 
 
 ### Examples:
@@ -32,3 +32,4 @@ capx [stage] [ssh|disk|info] [user]
     $ capx production ssh  # execute ssh command
     $ capx production ssh root # execute ssh command with root user
     $ capx production disk # execute ssh 'df -H' command
+    $ capx production redis # execute ssh 'redis-cli INFO keyspace' command
