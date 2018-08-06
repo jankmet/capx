@@ -16,30 +16,36 @@ module Capx
           if match = PATTERN.match(line)
             @server = match.captures[0]
             @user = match.captures[1] if @user.nil?
-          end  
+          end
         end
 
         if @server.nil? || @user.nil?
-          puts "capistrano server/user not found"
+          puts 'capistrano server/user not found'
         else
+          ssh_cmd = "ssh #{@user}@#{@server}"
           if @switch == 'ssh'
-            # call ssh  
-            cmd = "ssh #{@user}@#{@server}"
+            # call ssh
+            cmd = ssh_cmd
             execute_cmd(cmd)
           elsif @switch == 'disk'
             # call remote df -H
-            cmd = "ssh #{@user}@#{@server} 'df -H'" 
+            cmd = "#{ssh_cmd} 'df -H'"
             execute_cmd(cmd)
           elsif @switch == 'info'
-            cmd = "ssh #{@user}@#{@server} 'cat /etc/*-release'"  
+            # call remote cat /etc/*-release
+            cmd = "#{ssh_cmd} 'cat /etc/*-release'"
             execute_cmd(cmd)
-          else    
+          elsif @switch == 'redis'
+            # call remote redis-cli INFO keyspace
+            cmd = "#{ssh_cmd} 'redis-cli INFO keyspace'"
+            execute_cmd(cmd)
+          else
             puts "#{@user}@#{@server}"
-          end 
+          end
         end
       else
         puts "File #{file} not found"
-      end  
+      end
     end
 
     private
