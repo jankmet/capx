@@ -1,6 +1,7 @@
 module Capx
   class Runner
-    PATTERN = /server:?\s+[\'\"]([\w\-\.]+)[\'\"],\s+user:?\s+[\'\"]([\w\-\.]+)[\'\"]/
+    PATTERN     = /server:?\s+[\'\"]([\w\-\.]+)[\'\"],\s+user:?\s+[\'\"]([\w\-\.]+)[\'\"]/
+    DIR_PATTERN = /set :deploy_to,\s+[\'\"](?<path>(.+)\/([^\/]+))[\'\"]/
 
     def initialize(options)
       @stage  = options[:stage]
@@ -17,14 +18,21 @@ module Capx
             @server = match.captures[0]
             @user = match.captures[1] if @user.nil?
           end
+
+          if match = DIR_PATTERN.match(line)
+            @deploy_to = File.join(match[:path], 'current')
+          end
         end
 
         if @server.nil? || @user.nil?
           puts 'capistrano server/user not found'
         else
           ssh_cmd = "ssh #{@user}@#{@server}"
+
           if @switch == 'ssh'
             # call ssh
+            ssh_cmd = "ssh -t #{@user}@#{@server} \"cd #{@deploy_to}; exec \$SHELL -l\"" unless @deploy_to.nil?
+
             cmd = ssh_cmd
             execute_cmd(cmd)
           elsif @switch == 'disk'
