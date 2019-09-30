@@ -28,10 +28,11 @@ module Capx
           puts 'capistrano server/user not found'
         else
           ssh_cmd = "ssh #{@user}@#{@server}"
-          ssh_cmd = "ssh -t #{@user}@#{@server} \"cd #{@deploy_to}; exec \$SHELL -l\"" unless @deploy_to.nil?
 
           if @switch == 'ssh'
             # call ssh
+            ssh_cmd = "ssh -t #{@user}@#{@server} \"cd #{@deploy_to}; exec \$SHELL -l\"" unless @deploy_to.nil?
+
             cmd = ssh_cmd
             execute_cmd(cmd)
           elsif @switch == 'disk'
