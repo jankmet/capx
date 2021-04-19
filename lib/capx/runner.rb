@@ -31,7 +31,7 @@ module Capx
 
           if @switch == 'ssh'
             # call ssh
-            ssh_cmd = "ssh -t #{@user}@#{@server} \"cd #{@deploy_to}; exec \$SHELL -l\"" unless @deploy_to.nil?
+            ssh_cmd = "ssh -t #{@user}@#{@server} \"cd #{@deploy_to}; exec /bin/bash -l\"" unless @deploy_to.nil?
 
             cmd = ssh_cmd
             execute_cmd(cmd)
